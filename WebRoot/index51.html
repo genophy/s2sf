@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>videojs播放（切换）</title>
+
+<script type="text/javascript" src="js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="js/videojs/video.js"></script>
+<script type="text/javascript"
+	src="js/videojs/videojs-resolution-switcher.js"></script>
+<link href="js/videojs/video-js.css" rel="stylesheet" type="text/css" />
+<link href="js/videojs/videojs-resolution-switcher.css" rel="stylesheet"
+	type="text/css" />
+
+<script type="text/javascript">
+	videojs.options.flash.swf = "js/videojs/video-js.swf"; // 加了此句，就会引用本地的swf播放器
+</script>
+</head>
+<body>
+	<h1>test demo</h1>
+	<h1>视频用mpeg4格式</h1>
+	<video id="video_1"
+		class="video-js vjs-default-skin vjs-big-play-centered" width="600"
+		data-setup='{}'>
+	</video>
+	<!-- <video id="video_1" class="video-js vjs-default-skin"  preload="auto"  width="600"
+		controls data-setup='{}'>
+		<source src="http://192.168.0.110:5080/video/poril/best.mp4"
+			type='video/x-flv' label='HD' res='10' />
+		<source src="http://192.168.0.110:5080/video/p240/cup.mp4"
+			type='video/x-flv' label='240P' res='240' />
+		<source src="http://192.168.0.110:5080/video/p360/secret.mp4"
+			type="video/x-flv" label='360P' res='0' />
+		<source src="http://192.168.0.110:5080/video/p480/sexy.mp4"
+			type='video/x-flv' label='480P' res='480' />
+	</video> -->
+	<script type="text/javascript">
+ // 	  videojs('video_1').videoJsResolutionSwitcher();
+		videojs('video_1', { 
+				preload:"auto",
+				techOrder:['flash','html5'], // 设定解码排序
+				controls:true,
+			    plugins: {
+			        videoJsResolutionSwitcher: {
+			          default: 'high',
+			          dynamicLabel: true
+			        }
+			      }
+		}, function() {
+			var _this = this;
+			
+			_this.updateSrc([
+          	{
+               src: 'http://192.168.0.110:5080/video/poril/best.mp4',
+               type: 'video/mp4',
+               label: 'HD'
+             }, 
+             {
+                 src: 'http://192.168.0.110:5080/video/p240/best.mp4',
+              	type: 'video/mp4',
+              	label: '240P'
+              }, 
+             {
+                 src: 'http://192.168.0.110:5080/video/p480/best.mp4',
+              	type: 'video/mp4',
+              	label: '480P'
+              }, 
+             {
+                src: 'http://192.168.0.110:5080/video/p360/best.mp4',
+             	type: 'video/mp4',
+             	label: '360P'
+             }
+           ]);
+			
+			
+			_this.on('resolutionchange', function() { 
+				_this.play();
+			})
+
+		});
+	</script>
+</body>
+</html>

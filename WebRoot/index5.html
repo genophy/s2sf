@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>videojs播放（bug）</title>
+
+<script type="text/javascript" src="js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="js/videojs/video.js"></script>
+<link href="js/videojs/video-js.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+ 	 videojs.options.flash.swf = "js/videojs/video-js.swf"; // 加了此句，就会引用本地的swf播放 
+</script>
+</head>
+<body>
+	<h1>test demo</h1>
+	<video id="example_video_1" class="video-js vjs-default-skin" controls autoplay
+		preload="none" width="640" height="264"
+		poster="js/videojs/MY_VIDEO_POSTER.jpg" data-setup="{}">
+		<source src="http://192.168.0.110:5080/video/poril/best.mp4"
+			type='video/x-flv' /> 
+	</video>
+
+</body>
+</html>

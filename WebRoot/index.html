@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XML提交方式</title>
+
+<script type="text/javascript" src="js/jquery/jquery-1.11.1.js" ></script>
+
+<script type="text/javascript">
+
+	$(function(){
+
+		$.ajax({
+			url : "/s2sf/enoAjaxJsonHandler", // 请求的url地址,Struts2中就是请求的<action>的name
+			type : "post", // 提交方式
+			data : {
+				"ANNO_BEAN" : "fetch"
+			}, // 提交的数据,一般使用JSON表示
+			success : function(data) { // 请求成功后执行的操作
+				alert(data);
+			},
+			error : function(data) { // 请求失败后执行的操作
+				alert("error")
+			}
+		})
+		
+	})
+</script>
+
+</head>
+<body>
+	<h1>test demo</h1>
+</body>
+</html>
