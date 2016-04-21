@@ -15,7 +15,7 @@
 
     son-lib-2.4-jdk15.jar
 
-    namphy_core-1.0.0.jar
+    namphy_core-1.0.0.jar (需要额外加载)
 
 ##pom.xml (dependencies)
 ```xml
