@@ -91,6 +91,7 @@
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 
 <script type="text/javascript">
+/* 此方法不建议使用 */
  function test(){
      
 	 $.ajax({
@@ -105,6 +106,8 @@
 		}
 	 }) 
  }
+
+ /* 此方法可用 */
  function test2(){
 	 
 	 $.ajax({
