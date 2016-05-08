@@ -134,14 +134,13 @@ public class AnnoUtil {
 	 */
 	private static List<String> getClassNameFromPkgList(String rootPath, List<String> pkgList ) {
 		List<String> myClassName = new ArrayList<String>();
-
+		rootPath = rootPath.replaceAll("^/", "");
 		File rootFileOrDir = new File(rootPath);
 		if (rootFileOrDir.isDirectory()) { // 若根文件是目录,则便利下面的包
 
 			if (null != pkgList && 0 != pkgList.size()) { // 若包列表存在，则便利包列表
 				for (String pkg  : pkgList) {
-					String pkgFullPath = rootPath.concat(pkg.replaceAll("\\.", System.getProperty("file.separator")));
-					myClassName.addAll(getClassNameFromPkgList(pkgFullPath, null ));
+					myClassName.addAll(getClassNameFromPkgList(rootPath.concat(pkg.replace(".", "/")), null ));
 
 				}
 			}
@@ -158,7 +157,9 @@ public class AnnoUtil {
 		else {
 			String fileFullName = rootFileOrDir.getAbsolutePath();
 			if (fileFullName.endsWith(".class")) {
-				String className = fileFullName.replace(global_src_root_path,"").replaceAll("\\.class$", "").replace(System.getProperty("file.separator"), ".");
+				String srcRoot = new File(global_src_root_path).getAbsolutePath();
+				String className = fileFullName.replace(srcRoot,"").replaceAll("\\.class$", "").replaceAll("\\/+", ".").replaceAll("\\\\+", ".").replaceAll("^.", "");
+				
 				myClassName.add(className);
 			}
 		} 
